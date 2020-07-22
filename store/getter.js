@@ -4,5 +4,18 @@ export default {
     },
     getStateRoleList(state){
         return state.roleList
+    },
+    getStateUserList(state){
+        return state.userList
+    },
+    getStateSpecsList(state){
+        return state.specsList
+    },
+    getStateGoodsList(state){
+        return state.goodsList
+    },
+    getStateCateList(state){
+        return state.cateList
     }
+
 }

@@ -9,6 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/reset.css'
 /* import axios from 'axios'
 Vue.prototype.$http = axios */
+Vue.prototype.$imgUrl = 'http://localhost:3000'
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
