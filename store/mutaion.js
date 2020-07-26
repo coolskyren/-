@@ -17,5 +17,14 @@ export default {
     },
     reqCateList(state,payload){
         state.cateList = payload
+    },
+    reqBannerList(state,payload){
+        state.bannerList = payload
+    },
+    reqSeckList(state,payload){
+        state.seckList = payload
+    },
+    reqMemberList(state,payload){
+        state.memberList = payload
     }
 }

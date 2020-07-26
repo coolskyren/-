@@ -42,7 +42,7 @@
         <el-form-item
           v-for="(item, index) in specsArr"
           label='规格属性'
-          :key="item.value"
+          :key="item.index"
           :label-width="formLabelWidth"
         >
           <el-input v-model="item.value" style="width:65%"></el-input>

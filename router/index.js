@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
 Vue.use(Router)
-
+const router = new Router({
+  
+})
 export default new Router({
   //路由模式
   mode: 'history',
@@ -78,12 +79,28 @@ export default new Router({
             meta:{
               name:'商品分类'
             }
+          },
+          {
+            path: '',
+            redirect: '/home',
           }
       ]
     },
     {
       path: '*',
-      redirect: '/login'
+      redirect: '/index'
     }
   ]
+  
+})
+
+router.beforeEach((to, from, next) => {
+  if(to.path == '/login'){
+    next()
+    return
+  }
+  if(!sessionStorage.getItem('userInfo')){
+    next('/login')
+  }
+  next()
 })

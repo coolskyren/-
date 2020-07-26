@@ -11,7 +11,11 @@ http.interceptors.request.use((config)=>{
 //响应拦截
 http.interceptors.response.use((res)=>{
     console.log(res.data,'响应全局')
-    //全局拦截错误
+    if(res.data.code ==403){
+        Message.error(res.data.msg)
+        //如果token失效就返回登录页面
+        router.push('/login')
+    }
     return res
 })
 export default http

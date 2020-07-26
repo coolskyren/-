@@ -28,6 +28,7 @@
             :visible.sync="dialogIsShow"
             center
             :before-close="cancel"
+            
         >
             <el-form :model="menuInfo" :rules="rules" ref="menuInfo">
                 <el-form-item label="菜单名称：" :label-width="formLabelWidth" prop="title">
