@@ -4,7 +4,9 @@ import {
   getuserList,
   getspecsList,
   getcateList,
-  getgoodsList
+  getgoodsList,
+  getbannerList,
+  getseckList,
 } from '@/util/axios'
 
 export default {
@@ -75,6 +77,36 @@ export default {
       .then(res => {
         if (res.data.code == 200) {
           commit('reqCateList', res.data.list)
+        }
+      })
+  },
+  getActionBannerList({
+    commit
+  }) {
+    getbannerList({istree:1})
+      .then(res => {
+        if (res.data.code == 200) {
+          commit('reqBannerList', res.data.list)
+        }
+      })
+  },
+  getActionSeckList({
+    commit
+  }) {
+    getseckList({istree:1})
+      .then(res => {
+        if (res.data.code == 200) {
+          commit('reqSeckList', res.data.list)
+        }
+      })
+  },
+  getActionMemberList({
+    commit
+  }) {
+    getmemberList({istree:1})
+      .then(res => {
+        if (res.data.code == 200) {
+          commit('reqMemberList', res.data.list)
         }
       })
   },

@@ -15,7 +15,7 @@
                         <i class="el-icon-menu"></i>
                         <span slot="title">首页</span>
                     </el-menu-item>
-                    <el-submenu v-for='item in getStateMenuList' :key='item.id' :index="item.id.toString()">
+                    <el-submenu v-for='item in navMenu' :key='item.id' :index="item.id.toString()">
                         <template slot="title">
                             <i :class="item.icon"></i>
                             <span>{{item.title}}</span>
@@ -38,14 +38,19 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['getStateMenuList'])
+        // ...mapGetters(['getStateMenuList'])
+        navMenu(){
+            let data = {}
+            data = sessionStorage.getItem('userInfo') ? JSON.parse(sessionStorage.getItem('userInfo')):{}
+            return data.menus
+        }
     },
     mounted() {
         this.defaultActive = this.$route.path
-        this.getActionMenuList()
+        // this.getActionMenuList()
     },
     methods: {
-        ...mapActions(['getActionMenuList'])
+        // ...mapActions(['getActionMenuList'])
     },
 }
 </script>

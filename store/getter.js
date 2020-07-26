@@ -16,6 +16,14 @@ export default {
     },
     getStateCateList(state){
         return state.cateList
+    },
+    getStateBannerList(state){
+        return state.bannerList
+    },
+    getStateSeckList(state){
+        return state.seckList
+    },
+    getStateMemberList(state){
+        return state.memberList
     }
-
 }

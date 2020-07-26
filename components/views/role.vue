@@ -31,6 +31,7 @@
             :visible.sync="dialogIsShow"
             center
             :before-close="cancel"
+            
         >
             <el-form :model="menuInfo" :rules="rules" ref="menuInfo">
                 <el-form-item label="角色名称：" :label-width="formLabelWidth" prop="rolename">
@@ -45,6 +46,7 @@
                         ref="tree"
                         :props="defaultProps"
                         :default-checked-keys="defaultKey"
+                        :check-strictly = "true"
                     ></el-tree>
                 </el-form-item>
                 <el-form-item label="状态：" :label-width="formLabelWidth">

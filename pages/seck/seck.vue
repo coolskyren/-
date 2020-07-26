@@ -4,15 +4,15 @@
         <div>
             <el-button size="small" type="primary" @click="add">添加</el-button>
         </div>
-        <menu-list @edit = 'edit'></menu-list>
-        <menu-add ref='vAdd' :addInfo = 'addInfo' @cancel = 'cancel'></menu-add>
+        <seck-list @edit = 'edit'></seck-list>
+        <seck-add ref='vAdd' :addInfo = 'addInfo' @cancel = 'cancel'></seck-add>
     </div>
 </template>
 
 <script>
 
-import menuList from './list'
-import menuAdd from './add'
+import seckList from './list'
+import seckAdd from './add'
 import breadCrumb from '@/common/breadcrumb'
 export default {
     data() {
@@ -45,8 +45,8 @@ export default {
     },
     components: {
         breadCrumb,
-        menuList,
-        menuAdd
+        seckList,
+        seckAdd
     }
 }
 </script>

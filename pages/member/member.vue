@@ -1,52 +1,44 @@
 <template>
     <div>
         <bread-Crumb></bread-Crumb>
-        <div>
-            <el-button size="small" type="primary" @click="add">添加</el-button>
-        </div>
-        <menu-list @edit = 'edit'></menu-list>
-        <menu-add ref='vAdd' :addInfo = 'addInfo' @cancel = 'cancel'></menu-add>
+        <v-list @edit="edit"></v-list>
+        <v-add ref="vAdd" :addInfo="addInfo" @cancel="cancel"></v-add>
     </div>
 </template>
 
 <script>
-
-import menuList from './list'
-import menuAdd from './add'
 import breadCrumb from '@/common/breadcrumb'
+import vList from './list'
+import vAdd from './add'
 export default {
     data() {
         return {
-            addInfo:{
-               isAdd: true, 
-               dialogIsShow: false, 
-            },
-            
+            addInfo: {
+                isAdd: true, 
+                dialogIsShow: false 
+            }
         }
     },
-    
-    
     methods: {
-        cancel(e){
+        cancel(e) {
             this.addInfo.dialogIsShow = e
+        },
+        edit(e) {
+            this.addInfo.isAdd = e.isAdd
+            this.addInfo.dialogIsShow = e.dialogIsShow
+            this.$refs.vAdd.update(e.id)
         },
         add() {
             this.addInfo = {
-                isAdd:true,
-                dialogIsShow: true,
+                isAdd: true,
+                dialogIsShow: true
             }
-        },
-        edit(e){
-            this.addInfo.isAdd = e.isAdd,
-            this.addInfo.dialogIsShow = e.dialogIsShow,
-            this.$refs.vAdd.update(e.id)
         }
-        
     },
     components: {
         breadCrumb,
-        menuList,
-        menuAdd
+        vList,
+        vAdd
     }
 }
 </script>

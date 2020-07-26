@@ -264,6 +264,7 @@ export default {
         //移除图片
         handleRemove(file, fileList) {
             console.log(file, fileList)
+            this.fileList = fileList;
         },
         //放大图片
         handlePreview(file) {
@@ -286,6 +287,7 @@ export default {
         //重置输入内容
         reset() {
             this.fileList = [] //上传文件列表
+            this.imgUrl = ''
             this.goodsInfo = {
                     first_cateid: '', //一级分类编号
                     second_cateid: '', //二级分类编号
@@ -355,8 +357,12 @@ export default {
                         })
                     } else {
                         file.append('id',this.editId)
-                        this.imgUrl = this.imgUrl?this.imgUrl : data.img
-                        
+                        if(this.imgUrl =='' && this.fileList.length == 0){
+                            this.imgUrl =''
+                        }else{
+                            this.imgUrl = this.imgUrl?this.imgUrl : data.img
+                        }
+                        file.append("img", this.imgUrl);
                         //调取更新接口
                         getgoodsEdit(file).then(res => {
                             if (res.data.code == 200) {

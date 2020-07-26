@@ -1,77 +1,55 @@
 <template>
-  <el-table
-    :data="getStateMenuList"
-    border
-    style="width: 100%"
-    row-key="id"
-    :tree-props="{children: 'children'}"
-  >
-    <el-table-column prop="id" label="菜单编号"></el-table-column>
-    <el-table-column prop="title" label="菜单名称"></el-table-column>
-    <el-table-column prop="pid" label="上级菜单"></el-table-column>
-    <el-table-column prop="icon" label="菜单图标"></el-table-column>
-    <el-table-column prop="url" label="菜单地址"></el-table-column>
-    <el-table-column prop="status" label="状态">
-      <template slot-scope="item">
-        <el-tag v-if="item.row.status==1" type="success">启动</el-tag>
-        <el-tag v-if="item.row.status==2" type="danger">禁用</el-tag>
-      </template>
-    </el-table-column>
-    <el-table-column label="操作" width="180">
-      <template slot-scope="item">
-        <el-button size="small" type="primary" @click="update(item.row.id)">编辑</el-button>
-        <el-button size="small" type="danger" @click="del(item.row.id)">删除</el-button>
-      </template>
-    </el-table-column>
-  </el-table>
+    <div>
+        <el-table :data="mList" border style="width: 100%">
+            <el-table-column prop="uid" label="用户编号"></el-table-column>
+            <el-table-column prop="nickname" label="昵称"></el-table-column>
+            <el-table-column prop="phone" label="手机号"></el-table-column>
+            <el-table-column prop="status" label="状态">
+                <template slot-scope="item">
+                    <el-tag v-if="item.row.status==1" type="success">启动</el-tag>
+                    <el-tag v-if="item.row.status==2" type="danger">禁用</el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column label="操作" width="180">
+                <template slot-scope="item">
+                    <el-button size="small" type="primary" @click="update(item.row.uid)">编辑</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
 </template>
 
 <script>
-import { getMenuDelete } from "@/util/axios";
-import { mapActions, mapGetters } from "vuex";
+import { getmemberList } from '@/util/axios'
 export default {
-  
-  computed: {
-    ...mapGetters(["getStateMenuList"])
-  },
-  mounted() {
-    this.getActionMenuList();
-  },
-  methods: {
-  ...mapActions(["getActionMenuList"]),
-  update(id){
-    this.$emit('edit',{
-      isAdd:false,
-      dialogIsShow:true,
-      id
-    })
-  },
-  del(id) {
-    this.$confirm("你确定要删除这条数据吗", "提示", {
-      confirmButtonText: "确定",
-      cancelButtonText: "取消",
-      type: "warning"
-    })
-      .then(() => {
-        getMenuDelete({ id }).then(res => {
-          if (res.data.code == 200) {
-            this.getActionMenuList();
-            this.$message.success(res.data.msg);
-          } else {
-            this.$message.error(res.data.msg);
-          }
-        });
-      })
-      .catch(() => {
-        this.$message({
-          type: "info",
-          message: "已取消删除"
-        });
-      });
-  }
-  }
-};
+    data() {
+        return {
+            mList:[]
+        }
+    },
+    mounted() {
+        this.getList()
+    },
+    methods: {
+        getList() {
+            getmemberList().then((res) => {
+                console.log(res, '会员列表')
+                if(res.data.code==200){
+                    this.mList = res.data.list
+                }
+            })
+        },
+
+        update(id) {
+            this.$emit('edit', {
+                isAdd: false,
+                dialogIsShow: true,
+                id
+            })
+        },
+    },
+}
 </script>
 
-<style lang="" scoped>
+<style  lang="" scoped>
 </style>

@@ -15,7 +15,7 @@
 
 <script>
 //引入面包屑组件
-import breadCrumb from '../../components/common/breadcrumb'
+import breadCrumb from '@/common/breadcrumb'
 //引入list组件
 import vList from './list'
 //引入弹框
